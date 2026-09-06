@@ -1,0 +1,20 @@
+{
+  "appName": "TrioSuite",
+  "loginTagline": "إدارة أعمالك تبدأ من هنا",
+  "welcomeBack": "مرحباً بعودتك",
+  "loginSubtitle": "سجّل دخولك للمتابعة إلى حسابك",
+  "emailAddress": "البريد الإلكتروني",
+  "emailHint": "name@company.com",
+  "password": "كلمة المرور",
+  "passwordHint": "أدخل كلمة المرور",
+  "showPassword": "إظهار كلمة المرور",
+  "hidePassword": "إخفاء كلمة المرور",
+  "rememberMe": "تذكرني",
+  "forgotPassword": "نسيت كلمة المرور؟",
+  "signIn": "تسجيل الدخول",
+  "supportHint": "هل تحتاج إلى مساعدة؟ تواصل مع الدعم",
+  "username": "اسم المستخدم",
+  "usernameHint": "أدخل اسم المستخدم",
+  "isRequired": "هذا الحقل مطلوب",
+  "passwordIsRequired": "كلمة المرور مطلوبة"
+}
