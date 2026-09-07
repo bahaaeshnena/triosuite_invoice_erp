@@ -808,6 +808,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You have logged in successfully`
+  String get loginSuccess {
+    return Intl.message(
+      'You have logged in successfully',
+      name: 'loginSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

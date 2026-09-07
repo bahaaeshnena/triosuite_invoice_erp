@@ -99,5 +99,6 @@
   "sampleCustomerDigitalHorizon": "Digital Horizon Co.",
   "sampleCustomerModernConstruction": "Modern Construction Est.",
   "sampleCustomerPointOfSale": "Point of Sale Store",
-  "noRouteDefined": "The requested page was not found"
+  "noRouteDefined": "The requested page was not found",
+  "loginSuccess": "You have logged in successfully"
 }

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:triosuite_invoice_erp/core/common/helpers/on_generate_routes.dart';
+import 'package:triosuite_invoice_erp/core/services/service_locator.dart';
+import 'package:triosuite_invoice_erp/core/services/shared_prefs.dart';
 import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart';
 
 import 'generated/l10n.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
+  setupServiceLocator();
   runApp(const MyApp());
 }
 

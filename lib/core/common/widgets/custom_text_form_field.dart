@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
+    this.onSaved,
     this.controller,
     this.initialValue,
     this.labelText,
@@ -77,6 +78,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextStyle? style;
   final Color? fillColor;
   final EdgeInsetsGeometry? contentPadding;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,7 @@ class CustomTextFormField extends StatelessWidget {
       autovalidateMode: autovalidateMode,
       onChanged: onChanged,
       onTap: onTap,
+      onSaved: onSaved,
       onFieldSubmitted: (value) {
         onFieldSubmitted?.call(value);
         if (nextFocusNode != null) {

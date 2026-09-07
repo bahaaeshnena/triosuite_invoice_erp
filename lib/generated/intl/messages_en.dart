@@ -88,6 +88,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginSubtitle": MessageLookupByLibrary.simpleMessage(
       "Sign in to continue to your account",
     ),
+    "loginSuccess": MessageLookupByLibrary.simpleMessage(
+      "You have logged in successfully",
+    ),
     "loginTagline": MessageLookupByLibrary.simpleMessage(
       "Your business, all in one place",
     ),

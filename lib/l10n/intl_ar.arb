@@ -99,5 +99,6 @@
   "sampleCustomerDigitalHorizon": "شركة الأفق الرقمية",
   "sampleCustomerModernConstruction": "مؤسسة البناء الحديث",
   "sampleCustomerPointOfSale": "متجر نقطة بيع",
-  "noRouteDefined": "الصفحة المطلوبة غير موجودة"
+  "noRouteDefined": "الصفحة المطلوبة غير موجودة",
+  "loginSuccess": "تم تسجيل الدخول بنجاح"
 }

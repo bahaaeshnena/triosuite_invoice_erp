@@ -23,8 +23,25 @@ abstract final class CustomSnackBar {
     return messenger.showSnackBar(
       SnackBar(
         duration: duration,
+
+        // يخلي الـ SnackBar قابل للتحريك عن مكانه الافتراضي
+        behavior: SnackBarBehavior.floating,
+
+        // نرفعه إلى أعلى الشاشة
+        margin: EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom:
+              MediaQuery.sizeOf(context).height -
+              MediaQuery.paddingOf(context).top -
+              90,
+        ),
+
         backgroundColor: colors.background,
         dismissDirection: DismissDirection.horizontal,
+
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
         content: Row(
           children: [
             Icon(_icon(type), color: colors.foreground, size: 22),
@@ -40,6 +57,7 @@ abstract final class CustomSnackBar {
             ),
           ],
         ),
+
         action: actionLabel == null || onActionPressed == null
             ? null
             : SnackBarAction(

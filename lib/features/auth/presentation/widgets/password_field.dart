@@ -4,7 +4,9 @@ import 'package:triosuite_invoice_erp/core/utils/validations/validators.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField({super.key});
+  const PasswordField({super.key, required this.onSaved});
+
+  final void Function(String?)? onSaved;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -34,6 +36,7 @@ class _PasswordFieldState extends State<PasswordField> {
         ),
       ),
       validator: (value) => Validators.validatePassword(value, context),
+      onSaved: widget.onSaved,
     );
   }
 }

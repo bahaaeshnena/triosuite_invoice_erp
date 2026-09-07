@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:triosuite_invoice_erp/features/auth/presentation/widgets/login_view_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:triosuite_invoice_erp/core/services/service_locator.dart';
+import 'package:triosuite_invoice_erp/features/auth/domain/repo/auth_repo.dart';
+import 'package:triosuite_invoice_erp/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:triosuite_invoice_erp/features/auth/presentation/widgets/login_view_body_bloc_consumer.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -8,9 +12,12 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: LoginViewBody(),
+      body: BlocProvider(
+        create: (context) => AuthCubit( authRepo: getIt<AuthRepo>() ),
+        child: LoginViewBodyBlocConsumer(),
+      ),
     );
   }
 }
