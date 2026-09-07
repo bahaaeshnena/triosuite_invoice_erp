@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:triosuite_invoice_erp/core/common/helpers/on_generate_routes.dart';
 import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+      onGenerateRoute: onGenerateRoutes,
       builder: (context, child) {
         final locale = Localizations.localeOf(context);
         final brightness = Theme.of(context).brightness;

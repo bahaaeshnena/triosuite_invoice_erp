@@ -4,6 +4,8 @@ import 'package:triosuite_invoice_erp/features/auth/presentation/widgets/login_v
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
+  static const String routeName = 'login_view';
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

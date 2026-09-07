@@ -4,6 +4,7 @@ import 'package:triosuite_invoice_erp/core/common/widgets/custom_text_form_field
 import 'package:triosuite_invoice_erp/core/utils/validations/validators.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/widgets/login_field_label.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/widgets/password_field.dart';
+import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
 
 class LoginFormCard extends StatelessWidget {
@@ -69,7 +70,8 @@ class LoginFormCard extends StatelessWidget {
           CustomElevatedButton(
             height: 54,
             text: translations.signIn,
-            onPressed: () {},
+            onPressed: () =>
+                Navigator.pushReplacementNamed(context, HomeView.routeName),
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF1957C7),
               foregroundColor: Colors.white,
