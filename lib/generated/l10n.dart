@@ -239,6 +239,51 @@ class S {
     return Intl.message('Settings', name: 'settings', desc: '', args: []);
   }
 
+  /// `Company settings`
+  String get companySettings {
+    return Intl.message(
+      'Company settings',
+      name: 'companySettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Select language`
+  String get selectLanguage {
+    return Intl.message(
+      'Select language',
+      name: 'selectLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message('English', name: 'english', desc: '', args: []);
+  }
+
+  /// `Dark mode`
+  String get darkMode {
+    return Intl.message('Dark mode', name: 'darkMode', desc: '', args: []);
+  }
+
+  /// `Guest`
+  String get guest {
+    return Intl.message('Guest', name: 'guest', desc: '', args: []);
+  }
+
   /// `Log out`
   String get logout {
     return Intl.message('Log out', name: 'logout', desc: '', args: []);

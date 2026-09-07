@@ -30,12 +30,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "adminAccount": MessageLookupByLibrary.simpleMessage("Administrator"),
     "amount": MessageLookupByLibrary.simpleMessage("Amount"),
     "appName": MessageLookupByLibrary.simpleMessage("TrioSuite"),
+    "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "bankTransfer": MessageLookupByLibrary.simpleMessage("Bank transfer"),
     "billTo": MessageLookupByLibrary.simpleMessage("Bill to"),
     "businessOverview": MessageLookupByLibrary.simpleMessage(
       "Business overview",
     ),
     "companyName": MessageLookupByLibrary.simpleMessage("Trio Technology Co."),
+    "companySettings": MessageLookupByLibrary.simpleMessage("Company settings"),
     "createInvoice": MessageLookupByLibrary.simpleMessage("Create invoice"),
     "createInvoiceSubtitle": MessageLookupByLibrary.simpleMessage(
       "Enter the customer and item details to issue a new invoice",
@@ -48,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "e.g. Al Ofoq Company",
     ),
     "customers": MessageLookupByLibrary.simpleMessage("Customers"),
+    "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
     "dashboardGreeting": MessageLookupByLibrary.simpleMessage(
       "Good morning, Ahmad",
     ),
@@ -61,9 +64,11 @@ class MessageLookup extends MessageLookupByLibrary {
     "dueOn": MessageLookupByLibrary.simpleMessage("Due on"),
     "emailAddress": MessageLookupByLibrary.simpleMessage("Email address"),
     "emailHint": MessageLookupByLibrary.simpleMessage("name@company.com"),
+    "english": MessageLookupByLibrary.simpleMessage("English"),
     "expenses": MessageLookupByLibrary.simpleMessage("Expenses"),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "grandTotal": MessageLookupByLibrary.simpleMessage("Grand total"),
+    "guest": MessageLookupByLibrary.simpleMessage("Guest"),
     "hidePassword": MessageLookupByLibrary.simpleMessage("Hide password"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "invoiceCreated": MessageLookupByLibrary.simpleMessage("Invoice created"),
@@ -85,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "itemSupport": MessageLookupByLibrary.simpleMessage(
       "Technical support service",
     ),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
     "loginSubtitle": MessageLookupByLibrary.simpleMessage(
       "Sign in to continue to your account",
     ),
@@ -140,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "sar": MessageLookupByLibrary.simpleMessage("SAR"),
     "saveDraft": MessageLookupByLibrary.simpleMessage("Save as draft"),
     "selectCustomer": MessageLookupByLibrary.simpleMessage("Select a customer"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("Select language"),
     "sendInvoice": MessageLookupByLibrary.simpleMessage("Send to customer"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "showPassword": MessageLookupByLibrary.simpleMessage("Show password"),

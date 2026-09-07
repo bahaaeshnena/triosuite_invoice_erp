@@ -5,12 +5,22 @@ import 'package:triosuite_invoice_erp/features/auth/data/models/user_model.dart'
 import 'package:triosuite_invoice_erp/features/auth/domain/entities/user_entity.dart';
 
 UserEntity? getUser() {
+  if (!Prefs.isInitialized) {
+    return null;
+  }
+
   final jsonString = Prefs.getString(kUserData);
 
   if (jsonString.isEmpty) {
     return null;
   }
 
-  final json = jsonDecode(jsonString) as Map<String, dynamic>;
-  return UserModel.fromJson(json).toEntity();
+  try {
+    final json = jsonDecode(jsonString) as Map<String, dynamic>;
+    return UserModel.fromJson(json).toEntity();
+  } on FormatException {
+    return null;
+  } on TypeError {
+    return null;
+  }
 }

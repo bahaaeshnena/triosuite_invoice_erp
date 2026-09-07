@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:triosuite_invoice_erp/core/common/helpers/on_generate_routes.dart';
 import 'package:triosuite_invoice_erp/core/services/service_locator.dart';
 import 'package:triosuite_invoice_erp/core/services/shared_prefs.dart';
+import 'package:triosuite_invoice_erp/core/utils/constants/constants.dart';
 import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart';
 
@@ -15,16 +16,63 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  static MyAppState of(BuildContext context) {
+    return context.findAncestorStateOfType<MyAppState>()!;
+  }
+
+  static MyAppState? maybeOf(BuildContext context) {
+    return context.findAncestorStateOfType<MyAppState>();
+  }
+
+  @override
+  State<MyApp> createState() => MyAppState();
+}
+
+class MyAppState extends State<MyApp> {
+  late ThemeMode themeMode;
+  late Locale _locale;
+
+  Locale get locale => _locale;
+
+  bool get isDarkMode => themeMode == ThemeMode.dark;
+
+  @override
+  void initState() {
+    super.initState();
+
+    themeMode = Prefs.getBool(kIsDarkMode) ? ThemeMode.dark : ThemeMode.light;
+
+    final savedLanguageCode = Prefs.getString(kAppLanguageCode);
+    _locale = Locale(savedLanguageCode.isEmpty ? 'en' : savedLanguageCode);
+  }
+
+  void changeTheme(bool isDark) {
+    if (isDarkMode == isDark) return;
+
+    setState(() {
+      themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
+    });
+    Prefs.setBool(kIsDarkMode, isDark);
+  }
+
+  void changeLanguage(String code) {
+    if (_locale.languageCode == code) return;
+
+    setState(() => _locale = Locale(code));
+    Prefs.setString(kAppLanguageCode, code);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
-      themeMode: ThemeMode.system,
+      locale: locale,
+      theme: AppTheme.light(locale: locale),
+      darkTheme: AppTheme.dark(locale: locale),
+      themeMode: themeMode,
       localizationsDelegates: [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -33,15 +81,6 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateRoute: onGenerateRoutes,
-      builder: (context, child) {
-        final locale = Localizations.localeOf(context);
-        final brightness = Theme.of(context).brightness;
-
-        return Theme(
-          data: AppTheme.forLocale(locale, brightness: brightness),
-          child: child ?? const SizedBox.shrink(),
-        );
-      },
       home: const LoginView(),
     );
   }

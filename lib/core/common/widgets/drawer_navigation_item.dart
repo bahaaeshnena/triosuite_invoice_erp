@@ -7,6 +7,7 @@ class DrawerNavigationItem extends StatelessWidget {
     required this.onTap,
     this.isSelected = false,
     this.isDestructive = false,
+    this.trailing,
     super.key,
   });
 
@@ -15,6 +16,7 @@ class DrawerNavigationItem extends StatelessWidget {
   final VoidCallback onTap;
   final bool isSelected;
   final bool isDestructive;
+  final Widget? trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,9 @@ class DrawerNavigationItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (isSelected)
+                if (trailing != null)
+                  trailing!
+                else if (isSelected)
                   Container(
                     width: 5,
                     height: 5,

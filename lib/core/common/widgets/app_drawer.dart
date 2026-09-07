@@ -7,6 +7,7 @@ import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart
 import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'package:triosuite_invoice_erp/features/invoices/presentation/create_invoice_view.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
+import 'package:triosuite_invoice_erp/main.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({required this.selectedRoute, super.key});
@@ -16,6 +17,9 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translations = S.of(context);
+    final app = MyApp.maybeOf(context);
+    final isDarkMode =
+        app?.isDarkMode ?? Theme.of(context).brightness == Brightness.dark;
 
     return Drawer(
       width: 304,
@@ -80,11 +84,48 @@ class AppDrawer extends StatelessWidget {
                     onTap: () => Navigator.pop(context),
                   ),
                   const SizedBox(height: 14),
-                  DrawerSectionLabel(label: translations.account),
+                  DrawerSectionLabel(label: translations.settings),
                   DrawerNavigationItem(
-                    icon: Icons.settings_outlined,
-                    label: translations.settings,
+                    icon: Icons.business_outlined,
+                    label: translations.companySettings,
                     onTap: () => Navigator.pop(context),
+                  ),
+                  DrawerNavigationItem(
+                    icon: Icons.language_rounded,
+                    label: translations.language,
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          (app?.locale.languageCode ??
+                                      Localizations.localeOf(
+                                        context,
+                                      ).languageCode) ==
+                                  'ar'
+                              ? translations.arabic
+                              : translations.english,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.expand_more_rounded, size: 18),
+                      ],
+                    ),
+                    onTap: () => _showLanguagePicker(context),
+                  ),
+                  DrawerNavigationItem(
+                    icon: Icons.dark_mode_outlined,
+                    label: translations.darkMode,
+                    trailing: Switch.adaptive(
+                      value: isDarkMode,
+                      onChanged: app?.changeTheme,
+                    ),
+                    onTap: app == null
+                        ? () {}
+                        : () => app.changeTheme(!app.isDarkMode),
                   ),
                 ],
               ),
@@ -111,6 +152,78 @@ class AppDrawer extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> _showLanguagePicker(BuildContext context) async {
+    final translations = S.of(context);
+    final app = MyApp.maybeOf(context);
+    final selectedLanguage =
+        app?.locale.languageCode ??
+        Localizations.localeOf(context).languageCode;
+    final languageCode = await showModalBottomSheet<String>(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                translations.selectLanguage,
+                style: Theme.of(
+                  sheetContext,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 8),
+              _LanguageOption(
+                label: translations.arabic,
+                languageCode: 'ar',
+                selectedLanguage: selectedLanguage,
+              ),
+              _LanguageOption(
+                label: translations.english,
+                languageCode: 'en',
+                selectedLanguage: selectedLanguage,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    if (languageCode != null && context.mounted) {
+      MyApp.maybeOf(context)?.changeLanguage(languageCode);
+    }
+  }
+}
+
+class _LanguageOption extends StatelessWidget {
+  const _LanguageOption({
+    required this.label,
+    required this.languageCode,
+    required this.selectedLanguage,
+  });
+
+  final String label;
+  final String languageCode;
+  final String selectedLanguage;
+
+  @override
+  Widget build(BuildContext context) {
+    final isSelected = languageCode == selectedLanguage;
+
+    return ListTile(
+      leading: Icon(
+        isSelected
+            ? Icons.radio_button_checked_rounded
+            : Icons.radio_button_off_rounded,
+        color: isSelected ? Theme.of(context).colorScheme.primary : null,
+      ),
+      title: Text(label),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onTap: () => Navigator.pop(context, languageCode),
     );
   }
 }
