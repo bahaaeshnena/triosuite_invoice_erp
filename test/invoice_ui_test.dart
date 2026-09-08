@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:triosuite_invoice_erp/core/common/helpers/on_generate_routes.dart';
+import 'package:triosuite_invoice_erp/core/services/service_locator.dart';
 import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'package:triosuite_invoice_erp/features/invoices/presentation/create_invoice_view.dart';
@@ -9,6 +10,8 @@ import 'package:triosuite_invoice_erp/features/invoices/presentation/invoice_det
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
 
 void main() {
+  setUpAll(setupServiceLocator);
+
   testWidgets('invoice UI routes render on a mobile viewport', (tester) async {
     await tester.binding.setSurfaceSize(const Size(390, 844));
     addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -23,7 +26,7 @@ void main() {
 
     await tester.tap(find.byTooltip('Open navigation menu'));
     await tester.pumpAndSettle();
-    expect(find.text('Invoices'), findsOneWidget);
+    expect(find.text('Home'), findsOneWidget);
     expect(tester.takeException(), isNull);
 
     Navigator.of(tester.element(find.byType(HomeView))).pop();

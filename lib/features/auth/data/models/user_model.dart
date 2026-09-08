@@ -34,10 +34,38 @@ class UserModel {
     );
   }
 
+  factory UserModel.fromLocalJson(
+    Map<String, dynamic> json, {
+    String token = '',
+    String refreshToken = '',
+  }) {
+    return UserModel(
+      token: token,
+      refreshToken: refreshToken,
+      expiresAt: json['expiresAt'] as String,
+      refreshTokenExpiresAt: json['refreshTokenExpiresAt'] as String,
+      id: json['id'] as int,
+      username: json['username'] as String,
+      fullNameAr: json['fullNameAr'] as String,
+      fullNameEn: json['fullNameEn'] as String,
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'token': token,
       'refreshToken': refreshToken,
+      'expiresAt': expiresAt,
+      'refreshTokenExpiresAt': refreshTokenExpiresAt,
+      'id': id,
+      'username': username,
+      'fullNameAr': fullNameAr,
+      'fullNameEn': fullNameEn,
+    };
+  }
+
+  Map<String, dynamic> toLocalJson() {
+    return {
       'expiresAt': expiresAt,
       'refreshTokenExpiresAt': refreshTokenExpiresAt,
       'id': id,

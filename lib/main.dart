@@ -6,18 +6,22 @@ import 'package:triosuite_invoice_erp/core/services/shared_prefs.dart';
 import 'package:triosuite_invoice_erp/core/utils/constants/constants.dart';
 import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart';
-
+import 'package:triosuite_invoice_erp/features/auth/domain/repo/auth_repo.dart';
+import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   setupServiceLocator();
-  runApp(const MyApp());
+  final hasActiveSession = await getIt<AuthRepo>().restoreSession();
+  runApp(MyApp(hasActiveSession: hasActiveSession));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({this.hasActiveSession = false, super.key});
+
+  final bool hasActiveSession;
 
   static MyAppState of(BuildContext context) {
     return context.findAncestorStateOfType<MyAppState>()!;
@@ -81,7 +85,7 @@ class MyAppState extends State<MyApp> {
       ],
       supportedLocales: S.delegate.supportedLocales,
       onGenerateRoute: onGenerateRoutes,
-      home: const LoginView(),
+      home: widget.hasActiveSession ? const HomeView() : const LoginView(),
     );
   }
 }

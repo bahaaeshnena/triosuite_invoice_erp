@@ -17,7 +17,7 @@ UserEntity? getUser() {
 
   try {
     final json = jsonDecode(jsonString) as Map<String, dynamic>;
-    return UserModel.fromJson(json).toEntity();
+    return UserModel.fromLocalJson(json).toEntity();
   } on FormatException {
     return null;
   } on TypeError {

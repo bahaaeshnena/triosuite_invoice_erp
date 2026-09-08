@@ -38,18 +38,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      actions: [
-        IconButton(
-          tooltip: S.of(context).settings,
-          onPressed: () {},
-          icon: Badge(
-            smallSize: 7,
-            backgroundColor: colors.error,
-            child: const Icon(Icons.notifications_none_rounded),
-          ),
-        ),
-        const SizedBox(width: 8),
-      ],
     );
   }
 }

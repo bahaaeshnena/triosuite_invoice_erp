@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:triosuite_invoice_erp/core/common/widgets/app_drawer.dart';
+import 'package:triosuite_invoice_erp/core/services/service_locator.dart';
+import 'package:triosuite_invoice_erp/features/auth/domain/repo/auth_repo.dart';
+import 'package:triosuite_invoice_erp/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/widgets/home_view_body.dart';
 
@@ -10,10 +14,13 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: HomeAppBar(),
-      drawer: AppDrawer(selectedRoute: routeName),
-      body: HomeViewBody(),
+    return BlocProvider(
+      create: (_) => AuthCubit(authRepo: getIt<AuthRepo>()),
+      child: const Scaffold(
+        appBar: HomeAppBar(),
+        drawer: AppDrawer(selectedRoute: routeName),
+        body: HomeViewBody(),
+      ),
     );
   }
 }

@@ -15,8 +15,8 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: BlocProvider(
-        create: (context) => AuthCubit( authRepo: getIt<AuthRepo>() ),
-        child: LoginViewBodyBlocConsumer(),
+        create: (_) => AuthCubit(authRepo: getIt<AuthRepo>()),
+        child: const LoginViewBodyBlocConsumer(),
       ),
     );
   }

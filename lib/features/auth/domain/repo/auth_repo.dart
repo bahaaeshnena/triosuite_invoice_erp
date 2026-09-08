@@ -8,7 +8,13 @@ abstract class AuthRepo {
     required String password,
   });
 
-  Future<Either<Failure, Unit>> logout({required String refreshToken});
+  Future<Either<Failure, Unit>> logout();
+
+  Future<Either<Failure, UserEntity>> refreshSession();
+
+  Future<bool> restoreSession();
 
   Future<void> saveUserToLocalStorage(UserEntity user);
+
+  Future<void> clearLocalSession();
 }

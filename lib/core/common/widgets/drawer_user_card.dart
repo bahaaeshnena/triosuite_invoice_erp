@@ -21,25 +21,57 @@ class DrawerUserCard extends StatelessWidget {
     final avatarLetter = displayName.characters.first.toUpperCase();
 
     return Container(
-      padding: const EdgeInsets.all(12),
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: colors.surfaceContainerHighest.withValues(alpha: .65),
-        borderRadius: BorderRadius.circular(14),
+        gradient: LinearGradient(
+          begin: AlignmentDirectional.topStart,
+          end: AlignmentDirectional.bottomEnd,
+          colors: [
+            colors.primaryContainer,
+            colors.secondaryContainer.withValues(alpha: .78),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: colors.primary.withValues(alpha: .14)),
+        boxShadow: [
+          BoxShadow(
+            color: colors.shadow.withValues(alpha: .08),
+            blurRadius: 18,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: colors.secondaryContainer,
-            foregroundColor: colors.onSecondaryContainer,
+          Container(
+            width: 52,
+            height: 52,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: colors.primary,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: colors.onPrimary.withValues(alpha: .7),
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: colors.primary.withValues(alpha: .22),
+                  blurRadius: 12,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
             child: Text(
               avatarLetter,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: colors.onPrimary,
+                fontWeight: FontWeight.w800,
+              ),
             ),
           ),
-          const SizedBox(width: 11),
+          const SizedBox(width: 13),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,19 +80,30 @@ class DrawerUserCard extends StatelessWidget {
                   displayName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.labelLarge,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: colors.onPrimaryContainer,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
-                Text(
-                  user == null ? S.of(context).guest : '@${user.username}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colors.onSurfaceVariant,
+                const SizedBox(height: 3),
+                Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Directionality(
+                    textDirection: TextDirection.ltr,
+                    child: Text(
+                      user == null ? S.of(context).guest : '@${user.username}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: colors.onPrimaryContainer.withValues(alpha: .72),
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
           ),
+          Icon(Icons.verified_user_rounded, size: 20, color: colors.primary),
         ],
       ),
     );
