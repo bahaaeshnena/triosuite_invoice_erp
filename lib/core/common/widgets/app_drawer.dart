@@ -8,6 +8,7 @@ import 'package:triosuite_invoice_erp/features/auth/presentation/cubit/auth_cubi
 import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
 import 'package:triosuite_invoice_erp/main.dart';
+import 'package:triosuite_invoice_erp/features/settings/presentation/company_settings_view.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({required this.selectedRoute, super.key});
@@ -74,7 +75,13 @@ class AppDrawer extends StatelessWidget {
                     DrawerNavigationItem(
                       icon: Icons.business_outlined,
                       label: translations.companySettings,
-                      onTap: () => Navigator.pop(context),
+                      onTap: () {
+                        Navigator.pop(context);
+                        Navigator.pushNamed(
+                          context,
+                          CompanySettingsView.routeName,
+                        );
+                      },
                     ),
                     DrawerNavigationItem(
                       icon: Icons.language_rounded,

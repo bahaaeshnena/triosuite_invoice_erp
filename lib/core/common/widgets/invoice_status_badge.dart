@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
 
-enum InvoiceStatus { paid, pending, overdue, draft }
+enum InvoiceStatus { paid, pending, overdue, draft, approved, cancelled }
+
+InvoiceStatus invoiceStatusFromCode(String code) =>
+    switch (code.toUpperCase()) {
+      'APPROVED' => InvoiceStatus.approved,
+      'CANCELLED' => InvoiceStatus.cancelled,
+      'PAID' => InvoiceStatus.paid,
+      'PENDING' => InvoiceStatus.pending,
+      'OVERDUE' => InvoiceStatus.overdue,
+      _ => InvoiceStatus.draft,
+    };
 
 class InvoiceStatusBadge extends StatelessWidget {
   const InvoiceStatusBadge({required this.status, super.key});
@@ -31,6 +41,16 @@ class InvoiceStatusBadge extends StatelessWidget {
         translations.draft,
         const Color(0xFF526174),
         const Color(0xFFEEF2F6),
+      ),
+      InvoiceStatus.approved => (
+        translations.approved,
+        const Color(0xFF087A55),
+        const Color(0xFFE7F8F0),
+      ),
+      InvoiceStatus.cancelled => (
+        translations.cancelled,
+        const Color(0xFFC23434),
+        const Color(0xFFFFECEC),
       ),
     };
 

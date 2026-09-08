@@ -6,6 +6,8 @@ import 'package:triosuite_invoice_erp/features/auth/domain/repo/auth_repo.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/widgets/home_view_body.dart';
+import 'package:triosuite_invoice_erp/features/invoices/domain/repo/invoice_repo.dart';
+import 'package:triosuite_invoice_erp/features/invoices/presentation/cubit/invoice_list_cubit.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -14,8 +16,14 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => AuthCubit(authRepo: getIt<AuthRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AuthCubit(authRepo: getIt<AuthRepo>())),
+        BlocProvider(
+          create: (_) =>
+              InvoiceListCubit(invoiceRepo: getIt<InvoiceRepo>())..load(),
+        ),
+      ],
       child: const Scaffold(
         appBar: HomeAppBar(),
         drawer: AppDrawer(selectedRoute: routeName),

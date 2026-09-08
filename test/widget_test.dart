@@ -18,9 +18,15 @@ import 'package:triosuite_invoice_erp/core/utils/theme/app_theme.dart';
 import 'package:triosuite_invoice_erp/features/auth/presentation/login_view.dart';
 import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart';
 import 'package:triosuite_invoice_erp/main.dart';
+import 'package:triosuite_invoice_erp/features/invoices/domain/repo/invoice_repo.dart';
+import 'helpers/fake_invoice_repo.dart';
 
 void main() {
-  setUpAll(setupServiceLocator);
+  setUpAll(() async {
+    setupServiceLocator();
+    await getIt.unregister<InvoiceRepo>();
+    getIt.registerLazySingleton<InvoiceRepo>(FakeInvoiceRepo.new);
+  });
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({});

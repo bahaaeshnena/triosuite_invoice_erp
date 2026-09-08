@@ -863,6 +863,216 @@ class S {
       args: [],
     );
   }
+
+  /// `Approved`
+  String get approved {
+    return Intl.message('Approved', name: 'approved', desc: '', args: []);
+  }
+
+  /// `Cancelled`
+  String get cancelled {
+    return Intl.message('Cancelled', name: 'cancelled', desc: '', args: []);
+  }
+
+  /// `Generated automatically`
+  String get generatedAutomatically {
+    return Intl.message(
+      'Generated automatically',
+      name: 'generatedAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exchange rate`
+  String get exchangeRate {
+    return Intl.message(
+      'Exchange rate',
+      name: 'exchangeRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax mode`
+  String get taxMode {
+    return Intl.message('Tax mode', name: 'taxMode', desc: '', args: []);
+  }
+
+  /// `Scan barcode`
+  String get scanBarcode {
+    return Intl.message(
+      'Scan barcode',
+      name: 'scanBarcode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No active item matches this barcode`
+  String get barcodeItemNotFound {
+    return Intl.message(
+      'No active item matches this barcode',
+      name: 'barcodeItemNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a number greater than zero`
+  String get positiveNumber {
+    return Intl.message(
+      'Enter a number greater than zero',
+      name: 'positiveNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter zero or a positive number`
+  String get nonNegativeNumber {
+    return Intl.message(
+      'Enter zero or a positive number',
+      name: 'nonNegativeNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax rate must be between 0 and 100`
+  String get invalidTaxRate {
+    return Intl.message(
+      'Tax rate must be between 0 and 100',
+      name: 'invalidTaxRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `No invoices found`
+  String get noInvoices {
+    return Intl.message(
+      'No invoices found',
+      name: 'noInvoices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Base currency total`
+  String get baseCurrencyTotal {
+    return Intl.message(
+      'Base currency total',
+      name: 'baseCurrencyTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancellation reason`
+  String get cancellationReason {
+    return Intl.message(
+      'Cancellation reason',
+      name: 'cancellationReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel invoice`
+  String get cancelInvoice {
+    return Intl.message(
+      'Cancel invoice',
+      name: 'cancelInvoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approve invoice`
+  String get approveInvoice {
+    return Intl.message(
+      'Approve invoice',
+      name: 'approveInvoice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `Company settings saved`
+  String get settingsSaved {
+    return Intl.message(
+      'Company settings saved',
+      name: 'settingsSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company name (Arabic)`
+  String get companyNameAr {
+    return Intl.message(
+      'Company name (Arabic)',
+      name: 'companyNameAr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Company name (English)`
+  String get companyNameEn {
+    return Intl.message(
+      'Company name (English)',
+      name: 'companyNameEn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Default currency`
+  String get defaultCurrency {
+    return Intl.message(
+      'Default currency',
+      name: 'defaultCurrency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invoice prefix`
+  String get invoicePrefix {
+    return Intl.message(
+      'Invoice prefix',
+      name: 'invoicePrefix',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save settings`
+  String get saveSettings {
+    return Intl.message(
+      'Save settings',
+      name: 'saveSettings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -8,9 +8,20 @@ import 'package:triosuite_invoice_erp/features/home/presentation/home_view.dart'
 import 'package:triosuite_invoice_erp/features/invoices/presentation/create_invoice_view.dart';
 import 'package:triosuite_invoice_erp/features/invoices/presentation/invoice_details_view.dart';
 import 'package:triosuite_invoice_erp/generated/l10n.dart';
+import 'package:triosuite_invoice_erp/features/invoices/domain/repo/invoice_repo.dart';
+import 'package:triosuite_invoice_erp/features/settings/domain/repo/settings_repo.dart';
+import 'package:triosuite_invoice_erp/features/settings/presentation/company_settings_view.dart';
+import 'helpers/fake_invoice_repo.dart';
+import 'helpers/fake_settings_repo.dart';
 
 void main() {
-  setUpAll(setupServiceLocator);
+  setUpAll(() async {
+    setupServiceLocator();
+    await getIt.unregister<InvoiceRepo>();
+    getIt.registerLazySingleton<InvoiceRepo>(FakeInvoiceRepo.new);
+    await getIt.unregister<SettingsRepo>();
+    getIt.registerLazySingleton<SettingsRepo>(FakeSettingsRepo.new);
+  });
 
   testWidgets('invoice UI routes render on a mobile viewport', (tester) async {
     await tester.binding.setSurfaceSize(const Size(390, 844));
@@ -44,6 +55,14 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(InvoiceDetailsView), findsOneWidget);
     expect(tester.takeException(), isNull);
+
+    Navigator.of(
+      tester.element(find.byType(InvoiceDetailsView)),
+    ).pushNamed(CompanySettingsView.routeName);
+    await tester.pumpAndSettle();
+    expect(find.byType(CompanySettingsView), findsOneWidget);
+    expect(find.text('Trio Company'), findsOneWidget);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('invoice UI supports Arabic direction and translations', (
@@ -60,7 +79,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('أحدث الفواتير'), findsOneWidget);
+    expect(find.text('الفواتير'), findsOneWidget);
     expect(
       Directionality.of(tester.element(find.byType(HomeView))),
       TextDirection.rtl,
